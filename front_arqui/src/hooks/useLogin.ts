@@ -1,0 +1,24 @@
+import {useMutation} from '@tanstack/react-query';
+import api from '../api/axios';
+import { AxiosError } from 'axios';
+
+interface Logindata {
+    username: string;
+    password: string;
+}
+
+interface Loginresponse {
+    token: string;
+}
+
+export function useLogin(onSuccess: (data: Loginresponse)=> void, onError:(error:Error)=> void) {
+    return useMutation<Loginresponse,AxiosError,Logindata>({ mutationFn: async ({username, password}: Logindata): Promise<Loginresponse> => {
+            const respuesta = await api.post('/auth/login', {username, password});
+            return respuesta.data;
+        },
+        onSuccess: (data) => {
+            onSuccess(data);
+        },
+        onError,
+    });
+}

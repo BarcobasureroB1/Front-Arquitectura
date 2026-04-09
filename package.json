@@ -1,6 +1,10 @@
 {
   "dependencies": {
     "@tanstack/react-query": "^5.97.0",
-    "axios": "^1.15.0"
+    "axios": "^1.15.0",
+    "js-cookie": "^3.0.5"
+  },
+  "devDependencies": {
+    "@types/js-cookie": "^3.0.6"
   }
 }
